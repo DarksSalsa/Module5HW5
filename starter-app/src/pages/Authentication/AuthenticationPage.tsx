@@ -10,7 +10,7 @@ import {
     FormControlLabel
 } from '@mui/material'
 import { AppStoreContext } from "../../App";
-import AuthenticationStore from "./AuthentificationStore";
+import AuthenticationStore from "./AuthenticationStore";
 import { observer } from "mobx-react-lite";
 
 const AuthPage = () => {
