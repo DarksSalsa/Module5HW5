@@ -5,20 +5,37 @@ class AuthStore{
 
     token = '';
     id = '';
+    error = '';
 
     constructor() {
         makeAutoObservable(this);
     }
 
+    modifyError(error: string) {
+        this.error = error;
+    }
+
     async loginUser(email: string, password: string) {
-        const res = await login({ email, password });
-        this.token = res.token;
+        try {
+            const res = await login({ email, password }); 
+            this.error = "";
+            this.token = res.token;
+        }
+        catch (e: any) {
+            this.modifyError(e.message);
+        }
     }
 
     async registerUser(email: string, password: string) {
-        const res = await register({ email, password });
-        this.token = res.token;
-        this.id = res.id;
+        try {
+            const res = await register({ email, password });
+            this.error = "";
+            this.token = res.token;
+            this.id = res.id;
+        }
+        catch (e: any) {
+            this.modifyError(e.message);
+        }
     }
 
     logout() {

@@ -50,10 +50,15 @@ const AuthPage = () => {
                                 <Typography color="primary.main" variant="h1">{checked? "Sign in": "Register new user" }</Typography>
                             </Grid>
                             <Grid item>
-                                <TextField autoFocus label="Email" name='email' onChange={(event) => store.changeEmail(event.target.value)} required variant="outlined"/>
+                                <TextField required autoFocus label="Email" name='email' onChange={(event) => store.changeEmail(event.target.value)} variant="outlined"/>
                             </Grid>
                             <Grid item>
-                                <TextField type="password" label="Password" name='password' onChange={(event) => store.changePassword(event.target.value)} required variant="outlined"/>
+                                <TextField required type="password" label="Password" name='password' onChange={(event) => store.changePassword(event.target.value)} variant="outlined"/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                {!!appStore.authStore.error && (
+                                    <p style={{ color: 'red', fontSize: 14 }}>{appStore.authStore.error}</p>
+                                )}
                             </Grid>
                             <Grid item xs={12}>
                                 <Button variant="outlined" type="submit">
@@ -61,9 +66,6 @@ const AuthPage = () => {
                                 </Button>
                             </Grid>
                         </>
-                    )}
-                    {!!store.error && (
-                        <p style={{ color: 'red', fontSize: 14 }}>{store.error}</p>
                     )}
                     {!!appStore.authStore.token && (
                         <>
