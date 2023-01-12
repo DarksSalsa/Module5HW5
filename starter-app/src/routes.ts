@@ -8,6 +8,7 @@ import UserCreationCard from "./pages/UserManipulation/UserCreation/components";
 import UpdateUserPage from "./pages/UserManipulation/UserUpdate";
 import UserUpdateCard from "./pages/UserManipulation/UserUpdate/components";
 import AuthPage from "./pages/Authentication";
+import Redirect from "./pages/RedirectPage/Redirect";
 
 // other
 import {FC} from "react";
@@ -22,6 +23,13 @@ interface Route {
 }
 
 export const routes: Array<Route> = [
+    {
+        key: 'basic-route',
+        title: 'Basic',
+        path: '/',
+        enabled: false,
+        component: Redirect
+    },
     {
         key: 'user-route',
         title: 'User',
