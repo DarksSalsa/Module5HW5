@@ -40,7 +40,7 @@ const CreateUserPage: FC<any> = (props): ReactElement => {
                     <Grid
                         container
                         direction="row"
-                        justifyContent="space-around"
+                        justifyContent="space-between"
                         alignItems="center"
                         rowSpacing={{ xs: 5 }}
                         sx={{ textAlign: "center" }}
@@ -48,10 +48,10 @@ const CreateUserPage: FC<any> = (props): ReactElement => {
                         <Grid item xs={12}>
                             <Typography color="primary.main" variant="h1">CREATE NEW USER</Typography>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={12}>
                             <TextField autoFocus label="User name" name='name' error={store.inputs.name === ""} helperText={store.inputs.name === "" ? 'Empty field' : ' '} onChange={(event) => store.changeUserName(event.target.value)} required variant="outlined" />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={12}>
                             <TextField label="User job" name='job' error={store.inputs.job === ""} helperText={store.inputs.job === "" ? 'Empty field' : ' '} onChange={(event) => store.changeUserJob(event.target.value)} required variant="outlined" />
                         </Grid>
                         <Grid item xs={12}>
