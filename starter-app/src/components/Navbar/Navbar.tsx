@@ -18,6 +18,7 @@ import TokenIcon from '@mui/icons-material/Token';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { routes } from "../../routes";
 import { NavLink, useNavigate} from "react-router-dom";
 import { AppStoreContext } from "../../App";
@@ -202,15 +203,26 @@ const Navbar: FC = (): ReactElement => {
                   </div>
               )}
               {!!!appStore.authStore.token && (
-                <MenuItem onClick={() => {
-                  handleCloseAccountMenu();
-                  navigate("/authentication");
-                }}>
+                <div>
+                  <MenuItem onClick={() => {
+                    handleCloseAccountMenu();
+                    navigate("/login");
+                  }}>
                     <ListItemIcon>
                       <LoginIcon fontSize="small"/>
                     </ListItemIcon>
                     <ListItemText primary="Sign in" /> 
                   </MenuItem>
+                  <MenuItem onClick={() => {
+                    handleCloseAccountMenu();
+                    navigate("/register");
+                  }}>
+                    <ListItemIcon>
+                      <PersonAddIcon fontSize="small"/>
+                    </ListItemIcon>
+                    <ListItemText primary="Register" /> 
+                    </MenuItem>
+                  </div>
               )}
               </Menu>
             </>

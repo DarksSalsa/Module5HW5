@@ -5,7 +5,7 @@ class AuthStore{
 
     token = '';
     id = '';
-
+    
     constructor() {
         makeAutoObservable(this);
     }

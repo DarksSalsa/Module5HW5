@@ -7,8 +7,9 @@ import CreateUserPage from "./pages/UserManipulation/UserCreation";
 import UserCreationCard from "./pages/UserManipulation/UserCreation/components";
 import UpdateUserPage from "./pages/UserManipulation/UserUpdate";
 import UserUpdateCard from "./pages/UserManipulation/UserUpdate/components";
-import AuthPage from "./pages/Authentication";
 import Redirect from "./pages/RedirectPage/Redirect";
+import LoginPage from "./pages/Authentication/LoginPage";
+import RegisterPage from "./pages/Authentication/RegisterPage";
 
 // other
 import {FC} from "react";
@@ -87,10 +88,17 @@ export const routes: Array<Route> = [
         component: UserUpdateCard
     },
     {
-        key: 'show-authentication-page-route',
-        title: 'Authentication',
-        path: '/authentication',
+        key: 'show-login-page-route',
+        title: 'Sign in',
+        path: '/login',
         enabled: false,
-        component: AuthPage
+        component: LoginPage
+    },
+    {
+        key: 'show-register-page-route',
+        title: 'Register',
+        path: '/register',
+        enabled: false,
+        component: RegisterPage
     },
 ]

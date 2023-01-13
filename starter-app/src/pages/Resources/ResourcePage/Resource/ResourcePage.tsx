@@ -1,45 +1,37 @@
-import React, {ReactElement, FC, useEffect, useState} from "react";
+import React, {ReactElement, FC, useEffect} from "react";
 import {
     CircularProgress,
     Container,
     Grid,
+    Typography
 } from '@mui/material'
-import * as resourceApi from "../../../../api/modules/resources"
-import {IResource} from "../../../../interfaces/resources";
 import { useParams} from "react-router-dom";
 import ResourceCard from "../../components";
+import ResourcePageShowingStore from "./ResourcePageShowingStore";
+import { observer } from "mobx-react-lite";
+
+const store = new ResourcePageShowingStore();
 
 const ResourcePage: FC<any> = (): ReactElement => {
-    const [resource, setResource] = useState<IResource | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
     const { id } = useParams();
-
     useEffect(() => {
         if (id) {
-            const getResource = async () => {
-                try {
-                    setIsLoading(true);
-                    const res = await resourceApi.getResourceById(id);
-                    setResource(res.data);
-                } catch (e) {
-                    if (e instanceof Error) {
-                        console.error(e.message)
-                    }
-                }
-                setIsLoading(false)
-            }
-            getResource()
+            store.setId(id);
         }
-    }, [id])
-
+    },[id])
     return (
         <Container>
-            <Grid container justifyContent="center" alignItems="center">
-                {isLoading ? (<CircularProgress />) : (
-                    <ResourceCard {...resource} relocation='/unknown/'></ResourceCard>
-                )}
+            <Grid container justifyContent="center" alignItems="center" rowSpacing={5} sx = {{textAlign: "center"}}>
+                <Grid item>
+                    {store.isLoading ? (<CircularProgress />) : (
+                        <ResourceCard {...store.resources} relocation='/unknown/'></ResourceCard>
+                    )}
+                </Grid>
+                <Grid item xs={12}>
+                    <Typography color="#22bb33">Tip: To view color press right mouse button on any resource.</Typography>
+                </Grid>
             </Grid>
         </Container>
     );
 };
-export default ResourcePage;
+export default observer(ResourcePage);

@@ -2,7 +2,10 @@ const baseUrl = "https://reqres.in/api/"
 
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
-    const message = await response.json()
+    if (response.status === 400) {
+      return response.json()
+    }
+    const message = await response.json();
     throw Error(message.error || 'Request error')
   }
   return response.json()

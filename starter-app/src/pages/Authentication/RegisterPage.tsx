@@ -5,31 +5,20 @@ import {
     Typography,
     Button,
     TextField,
-    Switch,
-    FormGroup,
-    FormControlLabel
 } from '@mui/material'
 import { AppStoreContext } from "../../App";
 import AuthenticationStore from "./AuthenticationStore";
 import { observer } from "mobx-react-lite";
 
-const AuthPage = () => {
+const RegisterPage = () => {
     const appStore = useContext(AppStoreContext);
     const store = new AuthenticationStore(appStore.authStore);
-    const [checked, setChecked] = React.useState(true);
 
     return (
         <>
             <Box component="form" onSubmit={async (event) => {
                 event.preventDefault();
-                if (checked) 
-                {
-                    await store.login();   
-                }
-                else
-                {
-                    await store.register();    
-                }
+                await store.register();   
                 }} autoComplete="off">
                 <Grid
                     container
@@ -41,13 +30,8 @@ const AuthPage = () => {
                 >
                     {!!!appStore.authStore.token && (
                         <>
-                            <Grid item>
-                                <FormGroup>
-                                    <FormControlLabel control={<Switch checked={checked} onChange={() => setChecked(!checked)} />} label={checked? "Sign in": "Register"} />
-                                </FormGroup>
-                            </Grid>
                             <Grid item xs={12}>
-                                <Typography color="primary.main" variant="h1">{checked? "Sign in": "Register new user" }</Typography>
+                                <Typography color="primary.main" variant="h1">Register new user</Typography>
                             </Grid>
                             <Grid item>
                                 <TextField autoFocus label="Email" name='email' onChange={(event) => store.changeEmail(event.target.value)} required variant="outlined"/>
@@ -92,4 +76,4 @@ const AuthPage = () => {
     );
 };
 
-export default observer(AuthPage);
+export default observer(RegisterPage);

@@ -1,5 +1,5 @@
 import React, {ReactElement, FC} from "react";
-import { Box, CircularProgress, Container, Grid, Pagination } from '@mui/material';
+import { Box, CircularProgress, Container, Grid, Pagination, Typography } from '@mui/material';
 import ResourceCard from "./components";
 import ResourceShowingStore from "./ResourceShowingStore";
 import { observer } from "mobx-react-lite";
@@ -19,6 +19,9 @@ const Resources: FC<any> = (): ReactElement => {
                               <ResourceCard {...item} relocation={`/unknown/${item.id}`} />
                           </Grid>
                       ))}
+                          <Grid item xs={12}>
+                              <Typography color="#22bb33">Tip: To view color press right mouse button on any resource.</Typography>
+                          </Grid>
                   </>
               )}
           </Grid>
